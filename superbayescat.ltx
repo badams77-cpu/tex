@@ -9,8 +9,8 @@
 \corrauth{77 Twyford Abbey Road, London NW10 7ET}
 \email{barry.david.adams@gmail.com}
 \begin{abstract}
-	We introduce an extention to the Naive Bayes Classifier, in which remove the assumption that all document features (words or ngrams) are
-	independent, based on the computering the pairwise correlation of words (ngram) in the training documents, and find formulae for the training and test phases. 
+	We describe an extension to the Naive Bayes Classifier, in which remove the assumption that all document features (words or ngrams) are
+	independent, based on the computing the pairwise correlation of words (ngram) in the training documents, and find formulae for the training and test phases. 
     A python implementation is available on github \cite{bdoa_impl} and tests are run using the Reutes21578 accuracy increases from $79.1\%$
     to $81.1\% $, when the classifier also included features pair of word adjacent to each other. We discuss the speed and accuracy of the
     implementation and its advantages and disadvantages.
@@ -18,29 +18,89 @@
 \keywords{bayes classifier document classification supervised}
 \maketitle
 \section{Introduction}
-  The Naive Bayes Classifier is a subset of Bayesian decision theory and can classify documents suprisingly well \cite{Dhotre}.
+  The Naive Bayes Classifier is a subset of Bayesian decision theory and can classify documents surprisingly well \cite{Dhotre}.
   
-  In a naive Bayes a the probability of each feature, (typical words or ngrams) in a document for each document class is computered in the training phase, using the Bayes Theorem
-  .
-  When new documents are presented, the class of the document, is found to be
+  In a naive Bayes a the probability of each feature, (typical words or ngrams) in a document for each document class is computed in the training phase, using the Bayes Theorem. 
+  
   \begin{equation}
-  c = \argmax_c Pr(c). \prod_{i=1}^m Pr(x_i | c) 
+  	P(A|B) = \frac{P(B|A)P(A)}{P(B}
+  \end{equation}
+  .
+  When new documents are presented, the class of the document $c$, is found to be
+  \begin{equation}
+  c = \argmax_c P(c). \prod_{i=1}^m P(x_i | c) 
  \end{equation}
 We product is typical turned into a sum by taking the logarithm of the probability. It can be seen that speed of the classifier depends
 on the product of number of features in document and the number of document classes in the training set.  
   
-   in this work we relax the (Naive) assumption that each document feature,
-  words or ngrams, are independent, instead computing the correlation of the features, (hereafter refered to a words), in the training phase,
-  and produce a new fomula for class of the documents.
-    \begin{equation}
-  	c = \argmax_c Pr(c). \sum_{i=1}^m 2^{-\max_j(C_{ij})}\log( Pr(x_i | c))
-  \end{equation}
-  Where the correlation error $C$ is defined in the training phase as
-  
+\section{History of the Algorithm}  
 
+  This Algorithm has first discovered by the Author while working at Magus Research, the GB Patient Application \cite{AdamsMagus}, was declined
+because Algorithms are not Patentable, the Application was published in 2004, and is thus public knowledge. We have returned the Algorithm recently,
+to publish the work in an Academic format and produce results on how strong the Algorithm on the Reuters 21578 data set, and a subset there of.
+ 
+    \section{The Algorithm}  
+    
+  One Central Assumption of the Naive classifier is that the probabilities of each feature in the document are independent, this is often
+  a false assumption, if your classifying documents in the subjects of nuclear physics and ecology (say), the chance of the words 'quark' and
+  'proton' are highly non independent, and the naive Bayes classier will score them two strongly when both occur.
+  
+     in this work we relax the (Naive) assumption that each document feature,
+  words or ngrams, are independent, instead computing the correlation of the features, (hereafter refered to a words), in the training phase,
+  Our SuperBayesCat classifier calculates and stores the error in the independence assumption in the training phase. If $E(Feature1, Feature)$ is 0 when the words (document features) are completely independent, and 1 when the feature always occur together. 
+  
+  We wish to see the error in the assumption 
+  \begin{equation}
+  	P(A\and B\|c) = P(A\|c)P(B\|c)
+  \end{equation}
+    We may form $E(A,B)$
+    \begin{equation}
+    E(A,B) = 1 - \frac{\sum_c P(A,B\|c)-P(A|c)P(B|c)}{\sqrt{\sum_c P(A,B\|c))}\sqrt{\sum_c P(A\|c)P(B\|c))}}
+   \end{equation}
+
+	When $E=1$ $A$ and $B$ are independent and contribution $\log P(A) \log P(B)$ to the document. But when $E=0$ A always occurs with B, in the
+class, and the correct contribution to the Bayes classifier sum, is just $\log P(A)$.
+
+  Thus the better measure of classification, is 
+  
+    \begin{equation}
+  	c = \argmax_c P(c). \sum_{A=1}^m 2^{-\max_{B,A\neq B}(E_{A,B})}\log( P(A | c))
+  \end{equation}
+using the two fixed points, linearity and differentiability.
+
+
+  Where the correlation error $C$ can be estimated in the training phase, from the probability of the features (words) $A$ and $B$ in the overall collection of classes, $(P(A)$ and $P(B)$, and the
+  number of occurrences of word $Occ(A|c)$ and word $Occ(B|c)$ in the any document in class $c$, and the total number of words in class $c$, $T_c$)  
+ ,forming the vectors of classes, $s$ and $t$, 
+ 
+ \begin{equation} t_c(A,B)) = P(A|c)P(B|c),  s_c(A,B) = \frac{occ(A)occ(B)}{T_c}
+ 	\end{equation}
+ \begin{equation}		
+  	C_{A|B} = 1- \frac{\sum_c t_c(A,B). s_c(A,B)}{\sqrt{ \sum_c ()t_c(A|B))^2}\sqrt{\sum_c (s_c(A|B))^2}}
+  \end{equation}
+  Or one minus the normalised dot product between $s$ and $t$ over the classes.
+  
+  We can see that the speed of the classifier depends on the number of different words in the classification squared, and upon the number of different words in the test document squared. In practice the training can be slow, but the classification is still fast. 
+
+\section{Testing}
+  We made a fresh new write of a categorizer program which we published to github \cite{AdamsGithub}, We use both single words, and pairs of words
+  one after another, doing estimation of the error in the assumption of independence $E(A,B)$ only for the single words.
+We introduced tunable feature detection with a minimum entropy due to the feature. Our feature detection may have an numerical bug in the program
+as the entropy bits for reasonable number of words, seem a little off. 
+
+The test set was the Reuter 21578 Apte collection with 90 categories and 9,598 training documents. We also used a same 10 common classes as
+\cite{Keyvan} Keyvanpour et al, as a subset.
+
+We however able to tune for around 10000 words, and 30000 word pairs for the 10 classes, by arranging the minimum entropies., we then used the
+same entropy settings for full 90 Reuters classes.
 \begin{thebibliography}{99}
 	\bibitem{Dhotre} Pouria Kaviani, Mrs Sunita Dhotre, \emph{Short Survey on Naivce Bayes Algorithm}, Internation Journal of Advance
 	Engineering and Research Development, (2017)
+	\bibitem{AdamsMagus} Barry Adams Patient Application BG2395301A \emph{A method of classifying a set of data} App GB0226145A·2002-11-08 Publication GB2395301A·2004-05-19, (2004), https://worldwide.espacenet.com/patent/search/family/009947499/publication/GB2395301A?q=pn%3DGB2395301A
+	\bibitem{AdamsGithub} SuperBayesCat on github, (2021) https://github.com/badams77-cpu/SuperBayesCat/tree/master
+	\bibitem{Reuter21578} Text Categorization Corpora, http://disi.unitn.it/moschitti/corpora.htm
+	\bibitem{Keyvan}Keyvanpour, Mohammad and Bahojb Imani, Maryam, \emph{Semi-supervised text categorization: Exploiting unlabeled data using ensemble,
+	 learning algorithms}, Intelligent Data Analysis 05-2013 page 367-385, doi 10.3233/IDA-130584
 \end{thebibliography}
 
 \end{document}
