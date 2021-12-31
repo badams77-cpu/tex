@@ -1,0 +1,100 @@
+\documentclass{sagej}
+\usepackage{amsmath}
+\usepackage{url}
+\begin{document}
+\title{Calculating atmospheric IR absorbtion}
+\author{Dr Barry D.O. Adams\affilnum{1}}
+\affiliation{This work was self funded, Dr Adams is employed in a Back End Developer Role not related to this work}
+\corrauth{}
+\email{barry.david.adams@gmail.com}
+\begin{abstract}
+  In this work, we present a program to numerical integrate the atmospheric absorbtion due to carbon dioxide and water vapour
+	of infrared photons by the atmosphere.
+
+\end{abstract}
+\keywords{Global Warming, Carbon Dioxide, Water Vapour}
+\maketitle
+\section{Introduction}
+   In recent years, the hypothosis that human released carbon dioxide will warm planet earth has become an huge issue. There is naturally a
+large body of work in it. However very few of the calculation tools for the issue are released as open source. In this work we present
+a program and it results to numerical integrate carbon dioxide and water vapour absorption over frequency, latitude and height, producing a percentage
+absorbtion ammount for the two green house gases.
+
+\section{Input Absorption Lines}
+Spectra absorbtion lines for many molecules are available on the HITRAN database online. We are interest in the strongest lines for absorbtion by the
+molecules with the most common isotopes from the ground state, since it is the ground state is far more common than the higher levels. Download the HITRAN
+frequency, upper and lower quantum states, with the Einstein $A$ Coefficent that gives the absorption strength of the lines. Using the line intersity $S$, from
+HITRAN we order the lines from strongest to weakest, and select those starting at ground strength. We find 3 lines for carbon dioxide and 4 for water, and present them in the
+table below. The $CO_2$ lines reference is given by HITRAN is \cite{Zak}, and for water vapour it is \cite{},
+
+\begin{table}
+	\caption{The most prominant absorbtion lines from ground state}
+	\centering
+	\begin{tabular} { c c c c c c}
+        \hline\hline
+		Molecule & Frequency $(cm^-1)$ & Einstein Coeff $A$ & upper state multiplicity & upper state & line width air at $1 atm$ \\ 
+		\hline
+		$CO_2$ & 2349.91 & 140.7 & 3 & $v_1=0$,$v_2=0$, $i_2=1$, $v_3=1$, $J=1$, $r=1$ & 0.0949 \\
+		$CO_2$ & 686.16 & 1.023 & 3 &  $v_1=0$,$v_2=1$, $i_2=1$, $J=1$, $r=1$  & 0.0949 \\
+		$CO_2$ & 3716.56 & 5.903 & 3 &  $v_1=1$,$v_2=1$, $i_2=0$, $J=1$, $r=1$ & 0.0949 \\
+		$H_2O$ & 1634.96 & 7.599 & 3 & $v_1=0$, $v_2=1$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.1026 \\
+		$H_2O$ & 3693.29 & 1.031 & 3 &  $v_1=1$, $v_2=0$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.1049 \\
+		$H_2O$ & 3196.09 & 0.1982 & 3 &  $v_1=0$, $v_2=2$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.1038 \\
+		$H_2O$ & 1601.34 & 14.79 & 3 &   $v_1=0$, $v_2=2$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.0975 \\
+		\hline
+	\end{tabular}
+\end{table}	
+
+  
+\section{Required Equations}
+  
+The Intensity of radiation in the presence of an absorber is, \cite{Tokmakoff}
+\begin{equation}
+	I = I_0 e^{-N\alpha\L}
+\end{equation}
+Where N is number density of the absorbing molecule, L the length of the absorbing region, and $\alpha$ the cross section of absorbtion.
+Tokmakoff also gives for a single spectal line,
+\begin{equation}
+	\alpha = \frac{h\nu}{c} B
+\end{equation}	
+ Where $\nu$ is the frequency, and $B$ is the Einstein $B$ coefficient. HITRAN gives us the Einstein $A$ coefficent, which is related to $B$
+ (at equilibrium) by \cite{Mourya}
+ \begin{equation}
+ 	A = \frac{8\pi h \nu^3}{c^3} B
+ 	\end{equation}
+ So
+ \begin{equation}
+ 	\alpha = \frac{c^2}{8\pi\nu^2} A
+ \end{equation}
+Of course we need the spectral lines for each absorber, labelled $M$, so
+\begin{equation}
+	I  = I_0 e^{-L\left(\sum_M N_m\ \sum_\nu \frac{c^2}{8\pi\nu^23} \right)}
+\end{equation}
+
+The input intensity is the Planck Radiation Law  of EM emission from a surface at temperature T, \cite{Brit1}
+
+\begin{equation}
+	I_0(\nu) = \frac{8\pi h \nu^5}{c^4}\frac{1}{e^\frac{-h\nu}{kT}} -1
+\end{equation}
+
+The width of the spectra line is commonly approximated as a Lorenzian, due to Natural and Collusional broadaning. \cite{KW} In fact the Lorenz shape estimate the tail of absorption, and
+is often cut off at the edges, but we will not do that here. In HITRAN \cite{HITRANUnits} units, we lose the factor of $4\pi^2$ and the line width is proportional to the pressure $P$,
+$\Gamma= P\gamma$, of the line width in table 1.
+
+\begin{equation}
+ \phi(\nu) = \frac {\Gamma}{(\nu-\nu_0)^2 + \Gamma^2} 
+\end{equation}
+
+So now we have the absorption equation for surface tempature $T$ and Pressure $P$ at each height, so need a model of earths surface temperature and latitude $\theta$, and atmospheric 
+pressure at height $h$, to complete our input equations.
+
+
+\begin{thebibliography}{99}
+	\bibitem{Mourya} Prof A. Mourya, Engineering Physics, Lecture Notes, \url{https://sites.google.com/site/puenggphysics/home/unit-i/relation-between-einstein-s-a-and-b-coefficient} (2015)
+	\bibitem{Tokmakoff} Tokmakoff, Absoulute Cross Sections, Lecture Notes, \url{http://home.uchicago.edu/~tokmakoff/TDQMS/Notes/4.3._Abs_Cross-Sec_2-12-08.pdf}
+    \bibitem{Brit1} Britannica, T. Editors of Encyclopaedia (Invalid Date). Planck's radiation law. Encyclopedia Britannica. \url{https://www.britannica.com/science/Plancks-radiation-law}
+    \bibitem{KW} Kenneth Wood,University of St Andrews , Nebaleae, Lecture 8, Line Widths \url{http://www-star.st-and.ac.uk/~kw25/teaching/nebulae/lecture08_linewidths.pdf}
+    \bibitem{HITRANUnits} HITRAN Definitions and Units \url{https://hitran.org/docs/definitions-and-units/}
+\end{thebibliography}
+
+\end{document}
