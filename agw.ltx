@@ -53,7 +53,7 @@ Where the wave number $\tilde{\nu}$ is the frequency divided by the speed of lig
   
 The Intensity of radiation in the presence of an absorber is, \cite{Tokmakoff}
 \begin{equation}
-	I = I_0 e^{-N\alpha\L}
+	I = I_0 e^{-N\alpha L}
 \end{equation}
 Where N is number density of the absorbing molecule, L the length of the absorbing region, and $\alpha$ the cross section of absorbtion.
 Tokmakoff also gives for a single spectal line,
@@ -103,7 +103,52 @@ HITRAN \cite{HITRANUnits} approximates the line width$\Gamma$ for air to
 \end{equation}
 
 So now we have the absorption equation for surface temperature $T$ and Pressure $P$ at each height, so need a model of earths surface temperature and latitude $\theta$, and atmospheric 
-pressure at height $h$, to complete our input equations.
+pressure at height $h$, to complete our input equations. To begin with we will average the temperature over day and night, we need a rough input function of latitude that provides an average
+surface air temperature, we find this Fuelner at al /cite{Feulner}, as graph Fig 5, we copy the data for Observations from 1961-1990 which we approcimate place the data points for each 10 degree latitude in the table below. We will then interpolate begin
+the given points to provide a programmatic function to give a value for any latitude.
+
+\begin{table}
+	\caption{Reconstructed 1961-1990 Average Surface Air Temperature By Latitude}
+	\centering
+	\begin{tabular} { c c}
+		\hline\hline
+	    Latitude & Temperature Celsius \\ 
+		\hline
+			-90 & -20 \\
+            -80 & -15 \\
+            -70 & -8 \\
+            -60 & -1 \\
+            -50 & 10 \\
+            -40 & 16 \\
+            -30 & 20 \\
+            -20 & 24 \\
+            -10 & 26 \\
+             0 & 27 \\
+             10 & 27 \\
+             20 & 25 \\
+             30 & 20 \\
+             40 & 17 \\
+             50 & 7 \\
+             60 & -1 \\
+             70 & -8 \\
+             80 & -15 \\
+             90 & -17 \\
+        \hline
+    \end{tabular}
+\end{table}    
+
+Given the Pressure $P_0$ and Temperature $T_0$ at the Earths surface we can find the temperature, $T(h)$ and pressure a $P(h)$ a height $h$, using a Barometric formula, we use Lente and Osz's formule \cite(Lente)
+
+\begin{equation}
+	P(h) =  \left(P_0^\frac{1}{\nu+1}-\frac{Mg_0R_E P_0^\frac{1}{\nu+1}h}{(v+1)RT_0(R_E+h)}\right)^{\nu+1}
+\end{equation} 
+and
+\begin{equation}
+	T(h) = T_0 \left( 1 - \frac{Mg_0R_Eh}{(\nu+1)RT_0(R_E+h)}\right)
+\end{equation} 
+where $R$ is the gas constant, $R_E$ is the radius of the Earth, $m$ is the mass density of air $M=mN_A$ is the molar mass of air. $N_A$ IS Avogaro's constant, $g$ is acceleration due to gravity at the surface, $K$ is Boltzmann's constant,
+$v$ is the number of degree of freedom of the average molecule in air $\nu\approx 5/2$, and $m$ is mass density of air. The formula works to about $30Km$, which is around 4 e-folds of exponentionly growth, as the
+scale height of air pressure is around $7 Km$. 
 
 
 \begin{thebibliography}{99}
@@ -115,6 +160,9 @@ pressure at height $h$, to complete our input equations.
     \bibitem{Goldman} instein A-coefficients and statistical weights for molecular
     absorption transitions in the HITRAN database, Marie Simeckova, David Jacquemarta, Laurence S. Rothmana,
     Robert R. Gamacheb, Aaron Goldmanc. \url{https://lweb.cfa.harvard.edu/atmosphere/publications/2006-EinsteinA-JQSRT-98.pdf}
+    \bibitem{Feulner} G. Feulner, S. Rahmstorf, A. Levermann, S. Volkwardt, On the Origin of Surface Air Temperature Difference between Hemispheres in the Earth's Present-Day Climate,
+    pg 7136-7130 Vol 26 Jounral of Climate (2013)
+	\bibitem{Lente} Lente, G., Ősz, K. Barometric formulas: various derivations and comparisons to environmentally relevant observations. ChemTexts 6, 13 (2020). https://doi.org/10.1007/s40828-020-0111-6
 \end{thebibliography}
 
 \end{document}
