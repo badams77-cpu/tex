@@ -1,5 +1,6 @@
 \documentclass{book}
 \usepackage{cite}
+    \usepackage{chapterbib}
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{pdfpages}
@@ -16,11 +17,11 @@
 
 
 
-\section{Introduction}
+\section{Introduction}w
    In recent years, the hypothesis that human released carbon dioxide will warm planet earth has become an huge issue. There is naturally a
 large body of work in it. The UN has summarized these in annual reports \cite{IPCC}. However very few of the calculation tools for the issue are released as open source. In this work we present
 a program and it results to numerical integrate carbon dioxide and water vapour absorption over frequency, latitude and height, producing a percentage
-absorption amount for the two green house gases. In order works, with less computer time, transmission of in the middle atmosphere was performed using precomputed tables /cite{Ridgway}.
+absorption amount for the two green house gases. In order works, with less computer time, transmission of in the middle atmosphere was performed using precomputed tables \cite{Ridgway}.
 We however compute it directly.  Any such calculation requires temperature and pressure to be given at each height and latitude in the atmosphere \cite{Rosenfeld}, we calculate this to 25Km high, using \cite{Lente} Lente at al approximation.
 
 \section{Input Absorption Lines}
@@ -102,12 +103,12 @@ Then $\Delta_\nu$ can be approximately the line width $\Gamma$
 HITRAN \cite{HITRANUnits} approximates the line width $\Gamma$ for air to 
 
 \begin{equation}
-	\Gamma(p, T) = \left(\frac{T_{ref}}{T}\right)^{n_air} \gamma_{air} p]
+	\Gamma(p, T) = \left(\frac{T_{ref}}{T}\right)^{n_air} \gamma_{air} p
 \end{equation}
 
 So now we have the absorption equation for surface temperature $T$ and Pressure $P$ at each height, so need a model of earths surface temperature at latitude $\theta$, and atmospheric 
 pressure at height $h$, to complete our input equations. To begin with we will average the temperature over day and night, we need a rough input function of latitude that provides an average
-surface air temperature, we find this Fuelner at al /cite{Feulner}, as graph Fig 5, we copy the data for Observations from 1961-1990 which we approximate place the data points for each 10 degree latitude in the table below. We will then interpolate between the given points to provide a programmatic function to give a value for any latitude.
+surface air temperature, we find this Fuelner at al \cite{Feulner}, as graph Fig 5, we copy the data for Observations from 1961-1990 which we approximate place the data points for each 10 degree latitude in the table below. We will then interpolate between the given points to provide a programmatic function to give a value for any latitude.
 
 
 \begin{table}
@@ -149,7 +150,7 @@ and
 \begin{equation}
 	T(h) = T_0 \left( 1 - \frac{Mg_0R_Eh}{(\nu+1)RT_0(R_E+h)}\right)
 \end{equation} 
-where $R$ is the gas constant, $R_E$ is the radius of the Earth, $m$ is the mass density of air $M=mN_A$ is the molar mass of air. $N_A$ IS Avogadro's constant, $g$ is acceleration due to gravity at the surface, $K$ is Boltzmann's constant,
+where $R$ is the gas constant, $R_E$ is the radius of the Earth, $m$ is the mass density of air $M=mN_A$ is the molar mass of air. $N_A$ is Avogadro's constant, $g$ is acceleration due to gravity at the surface, $K$ is Boltzmann's constant,
 $v$ is the number of degree of freedom of the average molecule in air $\nu\approx 5/2$, and $m$ is mass density of air. The formula works to about $30Km$, which is around 4 e-folds of exponentially growth, as the
 scale height of air pressure is around $7 Km$. 
 
@@ -163,7 +164,7 @@ With T in Kelvin. Then the idea gas law will give the density of water vapour.
 
 \section{Results of absorption integration}
 We release the source code of our calculation at GitHub \cite{calcsource}. We step in 10 meter intervals to 25km, frequencies between $10^{11}$ and $3*10^{15}$ in steps of $10^5$, and a hundred steps in latitude, integrating triply using Simpsons law. We use C02 concentrations from $100$ to $1200$ and plot the graph of individual and combined contributions from the two gases. It takes around 6 hours on typical modern PC. We find that $CO_2$ matches similar results, but $H_20$ is some six time lower than modern estimates of water which is considered to the primary green house gases at $60\%$ of the total absorption. Green, Newman et al \cite{green}, state the individual lines from HITRAN do not well fit the absorption for water vapour, instead a sum of long tails of weaker lines, makes up most of the absorption, and "however, there is no universally accepted underlying physical model for the source of the continuum absorption." Also see P. Varanasi \cite{Varan} for more on the water vapour absorption. 
-  In our results we find that doubling $CO_2$ from $400 ppvm$ to $800 ppvm$ increases total absorption by $1.1 Wm^{-2}$, one point one, Watts per square meter. See the figure.
+  In our results we find that doubling $CO_2$ from $400 ppvm$ to $800 ppvm$ increases total absorption by $1.1 Wm^{-2}$, one point one, Watts per square meter. The change for $CO_2$ only is $1.2 Wm^{-2}$. See the figure.
 
 \includepdf{absorb2-chart.pdf}
   
@@ -174,8 +175,8 @@ The usual model of climate sensitivity is to use the Stefan Boltzmann equation t
 \begin{equation}
 \Delta F_{2xCO_2} = \frac{dF}{dT} \Delta T_{2xCO_2}  = 4\sigma T^3 \Delta T_{2xCO_2} 
 \end{equation}
-However we see an additional heat lose mechanism evaporation. At present an average rainfall of 39 inch lands upon the earth surface annually \cite{rainfall}. But rainfall increases $7\%$ for each degree warmer it gets \cite{rainrise}.
-Using the mean temperature of $17.5$, and the usual heat of vaporization of water, we multiply the volume of water falling per square meter, $970kg$, the specific heat of water times the average $82.5$ degree heating plus the heat of vaporization, gets $2.526GJ$ per year, or $80.11$ Watts per square meter, we call $E_{evap}$. Adding the increase in rainfall to the energy balance derivative equation gives.
+However we see an additional heat loss mechanism evaporation. At present an average rainfall of 39 inch lands upon the earth surface annually \cite{rainfall}. But rainfall increases $7\%$ for each degree warmer it gets \cite{rainrise}.
+Using the mean temperature of $17.5$, and the usual heat of vaporization of water, we multiply the volume of water falling per square meter, $970kg$, by the specific heat of water times the average $82.5$ degree heating plus the heat of vaporization, gets $2.526GJ$ per year, or $80.11$ Watts per square meter, we call $E_{evap}$. Adding the increase in rainfall to the energy balance derivative equation gives.
 
 \begin{equation}
  \Delta T_{2xCO_2} = \frac{ \Delta F}{ 4\sigma T^3 + 0.07 * E_{evap} exp( T-17.5)*0.07)}
@@ -183,7 +184,7 @@ Using the mean temperature of $17.5$, and the usual heat of vaporization of wate
 For our 1.1 Watts of additional $CO_2$ absorption from doubling $CO_2$, we get a warming of just $.17 C$. This five times lower than the \cite{wikisense} Climate sensitivity in Wikipedia, and we thus find it would make little difference to the modern world to continue Carbon emissions at current levels.
 
 \section{Conclusions}
-We have performed an ab inito calculation of CO2 and H20 absorption of Infrared radiation from the earth Surface, we begin from the absorption lines listed at HITRAN, for CO2 our figures for doubling, $1.2 Wm^-2$ are lower than some other studies, for example The ACS \cite{ACSCO2} claims $3.5 Wm^-2$ an CO2 going from $280ppmv$ to $560 ppmv$, which from our graph would be around $1.5 W^m-2$.  \cite{ACSCO2} does not't not list a citation or provider the code for there claim which is slightly over double ours. However our figure for $400 ppmv CO_2$ of $2.9 Wm^-2$ is actually one Watt higher than Richard Tuckett claims in the Encyclopedia of Analytical Science \cite{Ency}, so we are not outside the range provided by the literature. Our figures for water Vapour $2.1 Wm^-2$ are dramatically lower than Claimed in the literature. This may be because,  Green, Newman et al \cite{green}, state the individual lines from HITRAN do not well fit the absorption for water vapour, but rather a sum of long tails from smaller water vapour lines, produce most of the absorption. 
+We have performed an ab inito calculation of $CO_2$ and $H_2O$ absorption of Infrared radiation from the earth Surface, we begin from the absorption lines listed at HITRAN, for $CO_2$ our figures for doubling, $1.2 Wm^-2$ are lower than some other studies, for example The ACS \cite{ACSCO2} claims $3.5 Wm^-2$ an CO2 going from $280 ppmv$ to $560 ppmv$, which from our graph would be around $1.5 Wm^{-2}$.  \cite{ACSCO2} does not not list a citation or provider the code for there claim which is slightly over double ours. However our figure for $400 ppmv$  $CO_2$ of $2.9 Wm^{-2}$ is actually one Watt higher than Richard Tuckett claims in the Encyclopedia of Analytical Science \cite{Ency}, so we are not outside the range provided by the literature. Our figures for water Vapour $2.1 Wm^{-2}$ are dramatically lower than Claimed in the literature. This may be because,  Green, Newman et al \cite{green}, state the individual lines from HITRAN do not well fit the absorption for water vapour, but rather a sum of long tails from smaller water vapour lines, produce most of the absorption. Also see P. Varanasi \cite{Varan} for more on the water vapour absorption. 
 
 To understand the temperature increase from adding $CO_2$ to that atmosphere, a calculation of Climate Sensitivity is needed. Most formulations of Climate Sensitivity e.g. ACS \cite{ACSsense}, purely use
 the Boltzmann equation, we also use that, but we also consider the increase in cooling due to additionally rainfall. We find that a the quoted $7\%$ increase in rainfall per degree warming \cite{rainfall} decreases

@@ -1,21 +1,21 @@
-\documentclass{book}
-\usepackage{cite}
+\documentclass{llncs}
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{pdfpages}
-\setcounter{secnumdepth}{-1}
 \begin{document}
 \title{Estimation of atmospheric IR absorption}
-\author{Dr Barry D.O. Adams \\ barry.david.adams@gmail.com}
-\maketitle
-\section{Abstract}
+\author{Dr Barry D.O. Adams\affilnum{1}}
+\affiliation{This work was self funded, Dr Adams is employed in a Back End Developer Role not related to this work}
+\corrauth{}
+\email{barry.david.adams@gmail.com}
+\begin{abstract}
   In this work, we present a program to numerical integrate the atmospheric absorption due to carbon dioxide and water vapour
 	of infrared photons by the atmosphere. We also investigate the effect of water evaporation on climate sensitivity. We present a prediction
 	of increase temperature from doubling $CO_2$ of just under a fifth of a degree.
-\section{Keywords} Global Warming, Carbon Dioxide, Water Vapour, Climate Sensitivity, Rainfall
 
-
-
+\end{abstract}
+\keywords{Global Warming, Carbon Dioxide, Water Vapour, Climate Sensitivity}
+\maketitle
 \section{Introduction}
    In recent years, the hypothesis that human released carbon dioxide will warm planet earth has become an huge issue. There is naturally a
 large body of work in it. The UN has summarized these in annual reports \cite{IPCC}. However very few of the calculation tools for the issue are released as open source. In this work we present
@@ -43,7 +43,7 @@ table below. For the line to ground state we find the upper level multiplicity i
 		$H_2O$ & 1634.96 & 7.599 & $v_1=0$, $v_2=1$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.1026 & 0.74 \\
 		$H_2O$ & 3693.29 & 1.031 &  $v_1=1$, $v_2=0$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.1049 & 0.71\\
 		$H_2O$ & 3196.09 & 0.1982 &  $v_1=0$, $v_2=2$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.1038 & 0.57\\
-		$H_2O$ & 3779.49 & 28.98 &   $v_1=0$, $v_2=1$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.0975 & 0.61\\
+		$H_2O$ & 1601.34 & 14.79 &   $v_1=0$, $v_2=2$, $v_3=0$, $J=1$, $K_a=1$, $K_c=1$ & 0.0975 & 0.61\\
 		\hline
 	\end{tabular}
 \end{table}	
@@ -209,7 +209,7 @@ approach to carbon emissions, due to both the lower raw $CO_2$ absorption, and r
 	\bibitem{Lente} Lente, G., Ősz, K. Barometric formulas: various derivations and comparisons to environmentally relevant observations. ChemTexts 6, 13 (2020). https://doi.org/10.1007/s40828-020-0111-6
 	\bibitem{wikiaugust} \url{https://en.wikipedia.org/wiki/Vapour_pressure_of_water}
 	\bibitem{calcsource} \url{https://github.com/badams77-cpu/agw}
-	\bibitem{green} Recent advances in measurement of the water vapour continuum in the far-infrared spectral region
+	\bibitem{green} \url{Recent advances in measurement of the water vapour continuum in the far-infrared spectral region}
 	Paul D. Green
 	, Stuart M. Newman
 	, Ralph J. Beeby
