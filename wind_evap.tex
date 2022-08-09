@@ -11,8 +11,7 @@
 	\author{Dr Barry D.O. Adams \\ barry.david.adams@gmail.com}
 	\maketitle
 	\section{Abstract}
-		In this work, we estimate the increase in evaporation of sea water, due to an global average wind amount, and show
-		that an increase in average wind, leads to increased evaporation and thus reduced temperature.
+		In this work, we show that a reduction in climate sensitivity due extra evaporation is a better to climate sensitivity than without. We also estimate the increase in evaporation of sea water, due to changes in global average wind speed, and show	that an increase in average wind, leads to increased evaporation and thus reduced temperature.
 		
 	\section{Keywords} Average Wind, Evaporation, Climate Sensitivity, Rainfall
 	
@@ -36,17 +35,18 @@
 	\begin{equation}
 		\Delta T_{2xCO_2} = \frac{ \Delta F}{ 4\sigma T^3 + 0.07 * E_{evap} exp( T-17.5)*0.07)}
 	\end{equation}
-	For our 1.1 Watts predicted in our last paper \cite{Adam1} of additional $CO_2$ absorption from doubling $CO_2$, we get a warming of just $.39 C$. This $2.8$ times lower than the \cite{wikisense} Climate sensitivity in Wikipedia, and we thus find it would make little difference to the modern world to continue Carbon emissions at current levels. The above calculation corrects our previous paper \cite{Adams1}, which expected all the condensation energy to radiate to space.
+	For our $1.1$ Watts predicted in our last paper \cite{Adams1} of additional $CO_2$ absorption from doubling $CO_2$, we get a warming of just $.39 C$. This $2.8$ times lower than the \cite{wikisense} Climate sensitivity in Wikipedia. The in our previous paper \cite{Adams1} which expected all the condensation energy to dissipate to space, which could be true if the heat emission is primary transferred by convection to high attitudes. But if the heat is radiated from clouds, it transfers roughly $50\%$ to space and $50\#$ to the ground.	In a later section we will compare results on trends in rainfall over the last hundred years with both data on temperature. The best match is for the $1/2.8$ climate sensitivity.
+	
 	
 	\section{Global Rainfall vs Temperature}
 	
 	Both global average rainfall and temperature have increased in during the 20th Century. According to NASA and the EPA /cite{EPARain} Global Average Rainfall has increase at a rate of $0.1$ inches per decade.
-	Meanwhile temperature has increase at a rate of $0.08 C$ per decade.
+	Meanwhile temperature has increase at a rate of $0.08 C$ per decade \cite{GlobTemp}.
 	
    120 years of $0.1 inches per decade$ is $2.43 cm$ extra per annum and multiplying by water Empalthy of Vaporisation $2,250,000 J/Kg$, then dividing by second in a year, and ten to get litres. We get $1.81 W/m^2$ as the
    average thermal energy needed to evaporate that extra much water.
    
-   If rainfall energy goes $2.8$ parts to 1 into temperature as equation 2, then the global warming is $0.65$  Kelvin or Celsius since 1900, and input forcing heat is $1.81*(1+1/2.8)= 2.45 W/m^2$. This is very close to the IPCC figure of $2.43 W/m^2$ in /cite{Radiative}. It would be noted that, climate sensitivity without our rainfall cooling is about $1.0$, \cite{wikisense}, and that would predict a heating of $2.5C$, $150\% $ greater than is seen in observations. However for our figures to be accurate we must account for $0.31$ Kelvin  of difference. We will do so (approximately) in our next section looking at the effect of average wind speed on rainfall.
+   If rainfall energy goes $2.8$ parts to 1 into temperature as equation 2, then the global warming is $0.65$  Kelvin or Celsius since 1900, and input forcing heat is $1.81*(1+1/2.8)= 2.45 W/m^2$. This is very close to the IPCC figure of $2.43 W/m^2$ in /cite{Radiative}. It would be noted that, climate sensitivity without our rainfall cooling is about $1.0$, \cite{wikisense}, and that would predict a heating of $2.5C$, $150\% $ much greater than is seen in observations. However for our figures to be accurate we must account for $0.31$ Kelvin  of difference. We will do so (approximately) in our next section looking at the effect of average wind speed on rainfall.
    
    \section{Average Wind Speed and rainfall}
    
@@ -63,7 +63,49 @@
    Where $p$ is the precipitation in $mm/day$ and $w$ is the wind speed in $m/s$. The $R^2$ of the regression is $0.709$, the $P$ value, the probability that the rain fall is uncorrelated with wind speed, is a tiny
    $4.2*10^{-13}$ so they are very correlated.
    
-   Since the wind speed enters equation 3, linearly, we can assume the global average rain fall also depends approximately linearly in global wind speed. It is interesting that the intercept on the wind axis, has negative rain for zero wind, while in equation 3, evaporation is positive with no wind. We can ignore the intercept, by looking the difference in average wind speed for different years. Using the number of seconds in a day, and the empalthy of vaporisation of water, we arrive at.
+   Since the wind speed enters equation 3, linearly, we can assume the global average rain fall also depends approximately linearly in global wind speed. It is interesting that the intercept on the wind axis, has negative rain for zero wind, while in equation 3, evaporation is positive with no wind. We can ignore the intercept, by looking the difference in average wind speed for different years. 
+   
+   Assuming rainfall continues to fall off as $7\%$ of temperature. The geometric factor for the global rainfall versus the amount above at $10N$ is
+   
+   \begin{equation}
+   	G = /frac{ \int_{-\pi/2}^{\pi/2}}d\theta \int_0^{2\pi] d\phi exp(0.07 *(T(180*\theta/pi)-T( 180*10/\pi))\cos \theta } { /frac{ \int_{-\pi/2}^{\pi/2}}d\theta \int_0^{2\pi] )cos \theta }
+   	 = \frac{1}{2}\int _{-\pi/2}^{\pi/2}}d\theta  exp(-0.07 T(\theta))cos \theta
+   \end{equation}
+   
+      The average temperature of the surface of the earth at latitude $\theta$, is recorded by Fuelner at al \cite{Feulner}, in reproduced in the table below. Computing $G$ by numerical integration we find $G = 0.59262$
+      
+      \begin{table}
+      	\caption{Reconstructed 1961-1990 Average Surface Air Temperature By Latitude}
+      	\centering
+      	\begin{tabular} { c c}
+      		\hline\hline
+      		Latitude & Temperature Celsius \\ 
+      		\hline
+      		-90 & -20 \\
+      		-80 & -15 \\
+      		-70 & -8 \\
+      		-60 & -1 \\
+      		-50 & 10 \\
+      		-40 & 16 \\
+      		-30 & 20 \\
+      		-20 & 24 \\
+      		-10 & 26 \\
+      		0 & 27 \\
+      		10 & 27 \\
+      		20 & 25 \\
+      		30 & 20 \\
+      		40 & 17 \\
+      		50 & 7 \\
+      		60 & -1 \\
+      		70 & -8 \\
+      		80 & -15 \\
+      		90 & -17 \\
+      		\hline
+      	\end{tabular}
+      \end{table}    
+      
+      
+   Using the number of seconds in a day, and the empalthy of vaporisation of water, we arrive at.
    
    \begin{equation}
    	\Delta F = 3.124 \Delta w * 2.25*10^{6} / (2*60*60*24)  = 4.06 w
@@ -73,18 +115,30 @@
    We didn't find a global data set of average wind speeds over time, but find two usefully factoids, \cite{Horizion} tells us that from 1960 to 2010, global wind speed has declined by $0.3$ miles per hour each decade.
    While \cite{SciAmWind}, tells us from 2010, global average wind speed has increased from $7 mph$ to $7.4 mph$.
    
-   Let first us consider the heat effect of the fifty years of stilling from 1960. $\Delta F$ for the period is $2.68 W/m^2$ and the effect is an increase in heat. With the climate sensitivity of $1/2.8$ we predicted at the begin of this paper, (half that in our last paper /cite{Adams}, that is equivalent to heating of $0.96K$, this would explain all the recent global warming. However there is a strong geometric effect, where the rainfall is concentrated at the equator regions, and so over the earth, we can estimate the total evaporation energy (per $m^2$), is about one third, so the temperature increase is $0.32 K$, this matches the missing temperature increase from our last section. 
+   Let first us consider the heat effect of the fifty years of stilling from 1960. $\Delta F $ for the period is $2.68 W/m^2$ and the effect is an increase in heat. With the climate sensitivity of $1/2.8$ we predicted at the begin of this paper, (half that in our last paper /cite{Adams}, that is equivalent to heating of $0.95K$ including the $G$ factor, this would explain all have the recent warming. The rainfall is concentrated at the equator regions, and so over the earth, we can estimate the total evaporation energy (per $m^2$), is $G$ times as much, so the global temperature increase is $0.57 K$, this is double matches the missing temperature increase from our last section, and perhaps indicates that the $CO_2$ warming is over estimated.
+     
+   For the years $2010$ to $2020$, we get $Delta F $ is $.725$ so there is a temperature decrease of $0.15K$ enough to cancel the average $CO_2$ heating for the decade quoted in \cite{GlobTemp}. This matches observations in  \cite{GlobTemp}, that global temperature peaked in $2016$. Of course there will be other effects on temperature including volcanos and El Nino events in each particular year.
    
-   For the years $2010$ to $2020$, we get $Delta F/3$ is $.24$ so there is a temperature decrease of $0.09K$ just enough to cancel the average $CO_2$ heating for the decade quoted in \cite{GlobTemp}. This matches observations in  \cite{GlobTemp}, that global temperature peaked in $2016$. Of course there will be other effects on temperature including volcanos and El Nino events in each particular year. If  
            	
    \section{Conclusions}
    
-   In this paper we return to our estimate of the effect of rainfall on climate sensitivity in \cite{Adams}, we correct our assumption that all the heat released by condensation goes is radiated to space, with the
-   assumption that half is radiated to space, and half to the surface. We then find that 1 part to 2.8 of radiative forcing goes into the temperature, while the 2.8 parts going into increased rainfall. We look at the the increase average rainfall since $1900$ and find this matches what is expected from the IPCC radiative forcing, \cite{Radiative} of $2.54 W/m^2$, we then get a temperate increase from $CO_2$ of $0.65K$ this is around $2/3$ of the measured amount. But we look at the input variable to evaporation of water, wind speed. We find the missing $0.3K$ can be explained by the slowing of average wind speed, provided the average forcing for the Pacific $10N$ extends over a factor of a third of the earth surface. It should be noted that the $2.54 W/m^2$ forcing would lead to around $2.5$ Kelvins of warming since 1900, if the rainfall didn't effect the climate sensitivity, and the \cite{wikisense} figure remained. Thus our hypothesis greatly improves on the standard warming figures. Since figures are available for both wind and rain, more detailed calculations might in future show our temperature and wind speed factors in climate. Average wind speeds are variable over time, and it is not obvious how to compute them, but we expect them to be vary around a mean. If as we show, the warming over the last $120$ years, is $0.65$, instead of $1.1K$ then the future warming is also reduced by the same factor, wind speed being equal, this gives us hope. However if the IPCC radiative forcing (1.3 time ours for $CO_2$) and climate sensitivity is $1/2.8$, then climate change is threat, but at a reduced level. It should be noted that $0.34 W/m^2$ of forcing in \cite{Radiative} is due to halo-carbons which are no longer produced so $0.12K$ of heating will gradually disappear from the earth.
+   In this paper we return to our estimate of the effect of rainfall on climate sensitivity in \cite{Adams1}, we correct our assumption that all the heat released by condensation goes is radiated to space, with the
+   assumption that half is radiated to space, and half to the surface. We then find that $1$ part to $2.8$ of radiative forcing goes into the temperature, while the $2.8$ parts going into increased rainfall. We look at the the increase average rainfall since 1900 and find this matches what is expected from the IPCC radiative forcing, \cite{Radiative} of $2.54 W/m^2$, we then get a temperate increase from $CO_2$ of $0.65K$ this is around $2/3$ of the measured amount. But we look at the input variable to evaporation of water, wind speed. We find the that double the missing $0.3K$ can be explained by the slowing of average wind speed, provided the average forcing for the Pacific $10N$ can be extrapolated over the world. The regression fit for rain versus wind speed so performed over limited data and at one latitude, so its accuracy could be improved with further research.
+   
+    It should be noted that the $2.54 W/m^2$ forcing \cite{Radiative} would lead to around $2.5$ Kelvins of warming since 1900, if the rainfall didn't effect the climate sensitivity, and the \cite{wikisense} figure remained. Thus our hypothesis greatly improves on the standard warming figures, moving it down to $0.68$ Kelvin. Our estimate of rainfall due to the global change in average wind speed, is comparable at $0.95$ Kelvin,
+     thus the effects of wind-speed seem slightly greater than the effects of $CO_2$ radiative forcing.
+    
+     Since figures are available for both wind and rain, more detailed calculations might in future show our temperature and wind speed factors in climate. Average wind speeds are variable over time, and it is not obvious how to compute them, but we expect them to be vary. It should be noted that $0.34 W/m^2$ of forcing in \cite{Radiative} is due to halo-carbons which are no longer produced so $0.12K$ of heating will gradually disappear from the earth.
+           		
+   Our note here is short, and uses a narrow dataset of rain versus wind-speed. Metrology data is measurable for wind, rain and temperature, we recommend that studies are produced using as much data as possible, to
+   confirm or disfavour, both the expects of temperature and wind-speed on rainfall, and show or not, that this rainfall amount then effects global (and at each latitude) temperatures.
+   
+   Because rainfall and evaporation happen the most in hotter regions of the world, our effects, would lead to the hotter counties being less effected by climate change, while zone of moderate temperature would grow hotter by a greater amount.
            		
 	\begin{thebibliography}{99}
 		\bibitem{EPARain} Climate Change Indicators: US and Global Precipitation\url{https://www.epa.gov/climate-indicators/climate-change-indicators-us-and-global-precipitation}
-	    \bibitem{Adams} B Adams, Estimation of Atmospheric IR Absorption. Current Advances in Geography, Environment and Earth Sciences Vol. 3, 15 April 2022 , Page 106-112  DOI: 10.9734/bpi/cagees/v3/15971d
+	    \bibitem{EngTB1} Engineering Toolbox; Evaporation from Water Surface \url{https://www.engineeringtoolbox.com/evaporation-water-surface-d_690.html}
+	    \bibitem{Adams1} B Adams, Estimation of Atmospheric IR Absorption. Current Advances in Geography, Environment and Earth Sciences Vol. 3, 15 April 2022 , Page 106-112  DOI: 10.9734/bpi/cagees/v3/15971d
 	    \bibitem{ClimateGov} Climate Change: Global Temperature \url{https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature}
 	    \bibitem{GlobTemp} National Center for Environmental Information,  Annual 2020 Global Climate Report \url{https://www.ncei.noaa.gov/access/monitoring/monthly-report/global/202013}
 	    \bibitem{Radiative} V. Ramaswamy, Radiative Forcing of Climate Change \url{https://www.ipcc.ch/site/assets/uploads/2018/03/TAR-06.pdf}
