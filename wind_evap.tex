@@ -40,10 +40,10 @@
 	
 	\section{Global Rainfall vs Temperature}
 	
-	Both global average rainfall and temperature have increased in during the 20th Century. According to NASA and the EPA /cite{EPARain} Global Average Rainfall has increased at a rate of $0.1$ inches per decade.
+	Both global average rainfall and temperature have increased in during the 20th Century. According to NASA and the EPA \cite{EPARain} global average rainfall has increased at a rate of $0.1$ inches per decade.
 	Meanwhile temperature has increase at a rate of $0.08 C$ per decade \cite{GlobTemp}.
 	
-   120 years of $0.1$ inches per decade$ is $2.43 cm$ extra per annum and multiplying by water's empalthy of Vaporisation $2,250,000 J/Kg$, then dividing by second in a year, and ten to get litres. We get $1.81 W/m^2$ as the average thermal energy needed to evaporate that extra much water.
+   120 years of $0.1$ inches per decade is $2.43 cm$ extra per annum and multiplying by water's empalthy of Vaporisation $2,250,000 J/Kg$, then dividing by second in a year, and ten to get litres. We get $1.81 W/m^2$ as the average thermal energy needed to evaporate that extra much water.
    
    If rainfall energy goes $2.8$ parts to 1 into temperature as equation 2, then the global warming is $0.65$  Kelvin or Celsius since 1900, and input forcing heat is $1.81*(1+1/2.8)= 2.45 W/m^2$. This is very close to the IPCC figure of $2.43 W/m^2$ in \cite{Radiative}. It should be noted that, climate sensitivity without our rainfall cooling is about $1.0$, \cite{wikisense}, and that would predict a heating of $2.5C$, $150\% $ much greater than is seen in observations. However for our figures to be accurate we must account for $0.31$ Kelvin of temperature difference. We will do so (approximately) in our next section looking at the effect of average wind speed on rainfall.
    
@@ -67,9 +67,12 @@
    Assuming rainfall continues to fall off as $7\%$ per degree of temperature reduction \cite{rainrise}, a geometric factor for the global rainfall versus the amount above at $10N$ is
    
    \begin{equation}
-   	G = \frac{ \int_{-\pi/2}^{\pi/2}}d\theta \int_0^{2\pi} d\phi exp(0.07 *(T(180*\theta/pi)-T( 180*10/\pi))\cos \theta }{ \int_{-\pi/2}^{\pi/2}}d\theta \int_0^{2\pi] )cos \theta }
-   	 = \frac{1}{2}\int _{-\pi/2}^{\pi/2}}d\theta  exp(-0.07 T(\theta))cos \theta
+   	G = \frac{ \int_{-\pi/2}^{\pi/2}d\theta \int_0^{2\pi} d\phi exp(0.07 *(T(\theta)-T( 180 * 10/\pi))\cos \theta }{ \int_{-\pi/2}^{\pi/2}\theta \int_0^{2\pi} d\phi cos \theta d\theta }
    \end{equation}
+Thus,
+\begin{equation}
+	G = \frac{1}{2}\int_{-\pi/2}^{\pi/2}d\theta  exp(-0.07 T(\theta))cos \theta
+\end{equation}
    
       The average temperature of the surface of the earth at latitude $\theta$, is recorded by Fuelner at al \cite{Feulner}, in reproduced in the table below. Computing $G$ by numerical integration we find $G = 0.59262$
       
