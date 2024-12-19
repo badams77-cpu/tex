@@ -1,0 +1,110 @@
+\documentclass[12pt, letter paper]{article}
+
+\usepackage{tikz} 
+\usetikzlibrary{positioning}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\usepackage{amsfonts}
+
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+
+\title{Practice}
+\author{Barry D.O. Adams}
+\date{1 September 2023}
+
+
+\begin{document}
+
+\begin{abstract}
+\end{abstract}
+
+\section{Beauty Invisible Decay - Fermion Axial Vertix}
+ \begin{tikzpicture}[layered layout,baseline]
+\begin{feynman}
+\vertex (a);
+\vertex[below right=2cm of a] (b);
+\vertex[below=6cm of a] (d);
+\vertex[above right=2cm of d] (c);
+\vertex[below right=2cm of b] (e);
+\vertex[right=4cm of e] (f);
+\vertex[above right=2cm of f](h);
+\vertex[below right =2cm of f](i);
+
+\diagram* [large, horizontal=e to f]{ 
+(a) -- [fermion, edge label=\(b\)] (b)  -- [photon, edge label=\(W\), momentum'=\(k\)] (c)   -- [fermion, edge label=\(s\)] (d),
+(b) -- [fermion, momentum'=\(p_{1}\), edge label=\(c\)] (e) -- [fermion, momentum'=\(p_{2}\), edge label=\(c\)] (c) ,
+(e) -- [photon, edge label=\(\gamma_a\)] (f),
+(h) -- [fermion, edge label=\(\nu\)] (f) -- [fermion, edge label=\(\overbar\nu\)] (i),
+};
+\end{feynman}
+\end{tikzpicture}
+
+\section{Beauty Invisible Decay - Weak Axial Vertix}
+
+ \begin{tikzpicture}[layered layout,baseline]
+\begin{feynman}
+\vertex (a);
+\vertex[below right=2cm of a] (b);
+\vertex[below=6cm of a] (d);
+\vertex[above right=2cm of d] (c);
+\vertex[below right=2cm of b] (e);
+\vertex[right=4cm of e] (f);
+\vertex[above right=2cm of f](h);
+\vertex[below right =2cm of f](i);
+
+\diagram* [large, horizontal=e to f]{ 
+(a) -- [fermion, edge label=\(b\)] (b) -- [fermion, momentum'=\(p\), edge label=\(c\)] (c) -- [fermion, edge label=\(s\)] (d),
+(b) -- [photon, momentum'=\(k_{1}\), edge label=\(W\)] (e) -- [photon, momentum'=\(k_{2}\), edge label=\(W\)] (c)  ,
+(e) -- [photon, edge label=\(\gamma_a\)] (f),
+(h) -- [fermion, edge label=\(\nu\)] (f) -- [fermion, edge label=\(\overbar\nu\)] (i),
+};
+\end{feynman}
+\end{tikzpicture}
+
+\section{KOTO Anomaly - Fermion Axial Vertix}
+
+ \begin{tikzpicture}[layered layout,baseline]
+\begin{feynman}
+\vertex (a);
+\vertex[below right=2cm of a] (b);
+\vertex[below=6cm of a] (d);
+\vertex[above right=2cm of d] (c);
+\vertex[below right=2cm of b] (e);
+\vertex[right=4cm of e] (f);
+\vertex[above right=2cm of f](h);
+\vertex[below right =2cm of f](i);
+
+\diagram* [large, horizontal=e to f]{ 
+(a) -- [fermion, edge label=\(s\)] (b) -- [photon, momentum'=\(k\), edge label=\(W\)] (c)  -- [fermion, edge label=\(d\)] (d),
+(b) -- [fermion, momentum'=\(p_{1}\), edge label=\(u\)] (e) -- [fermion, momentum'=\(p_{2}\), edge label=\(u\)] (c) ,
+(e) -- [photon, edge label=\(\gamma_a\)] (f),
+(h) -- [fermion, edge label=\(\nu\)] (f) -- [fermion, edge label=\(\overbar\nu\)] (i),
+};
+\end{feynman}
+\end{tikzpicture}
+
+\section{KOTO Anomaly - Weak Axial Vertix}
+
+\ \begin{tikzpicture}[layered layout,baseline]
+\begin{feynman}
+\vertex (a);
+\vertex[below right=2cm of a] (b);
+\vertex[below=6cm of a] (d);
+\vertex[above right=2cm of d] (c);
+\vertex[below right=2cm of b] (e);
+\vertex[right=4cm of e] (f);
+\vertex[above right=2cm of f](h);
+\vertex[below right =2cm of f](i);
+
+\diagram* [large, horizontal=e to f]{ 
+(a) -- [fermion, edge label=\(s\)] (b) -- [fermion, momentum'=\(p\), edge label=\(u\)] (c)  -- [fermion, edge label=\(d\)] (d),
+(b) -- [photon, momentum'=\\(k_{1}\), edge label=\(W\)] (e) -- [photon, momentum'=\(k_{2}\), edge label=\(W\)] (c),
+(e) -- [photon, edge label=\(\gamma_a\)] (f),
+(h) -- [fermion, edge label=\(\nu\)] (f) -- [fermion, edge label=\(\overbar\nu\)] (i),
+};
+\end{feynman}
+\end{tikzpicture}
+
+\end{document}
