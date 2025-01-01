@@ -8,7 +8,8 @@
 \usepackage[compat=1.1.0]{tikz-feynman}
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb}
-\usepackage{amsfonts}44\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\usepackage{amsfonts}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
 
 
@@ -26,7 +27,6 @@
 	experiments using isotopically varied materials and ultra-cold neutron sources. If validated, this work could
 	deepen our understanding of fundamental forces, with significant implications for cosmology, dark matter, and
 	particle physics.
-#
 	
 \section{Keywords} Neutron Decay, Quantum Zeno Effect, Neutrino Background
 
@@ -70,11 +70,11 @@
 		\vertex (a);
 
 		\vertex[below=6cm of a] (d);
-		\vertex[above right=2cm of d] (c);
+		\vertex[above right=10cm of a] (c);
 		\vertex[below right=2cm of b] (e);
 		\vertex[right=4cm of e] (f);
 		\vertex[above right=2cm of f](h);
-		\vertex[below right =2cm of af](i);
+		\vertex[below right=2cm of f](i);
 		
 		\diagram* [large, horizontal=e to f]{ 
 			(a) -- [fermion, edge label=\(b\)]  (c) -- [fermion, edge label=\(b\)] (d),
