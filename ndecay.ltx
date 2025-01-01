@@ -68,17 +68,15 @@
  \begin{tikzpicture}[layered layout,baseline]
 	\begin{feynman}
 		\vertex (a);
-
 		\vertex[below=6cm of a] (d);
-		\vertex[above right=10cm of a] (c);
-		\vertex[below right=3cm of a] (e);
-		\vertex[right=4cm of e] (f);
+		\vertex[below right=3cm of a] (c);
+		\vertex[right=4cm of c] (f);
 		\vertex[above right=2cm of f](h);
 		\vertex[below right=2cm of f](i);
 		
 		\diagram* [large, horizontal=e to f]{ 
-			(a) -- [fermion, edge label=\(b\)]  (c) -- [fermion, edge label=\(b\)] (d),
-			(e) -- [photon, edge label=\(\gamma_a\)] (f),
+			(a) -- [fermion, edge label=\(q)]  (c) -- [fermion, edge label=\qb\)] (d),
+			(c) -- [photon, edge label=\(\gamma_a\)] (f),
 			(h) -- [fermion, edge label=\(\nu\)] (f) -- [fermion, edge label=\(\overbar\nu\)] (i),
 		};
 	\end{feynman}
